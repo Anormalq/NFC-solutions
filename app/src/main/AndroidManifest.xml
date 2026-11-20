@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
+    <!-- Android 11+ için: hangi uygulamaların yüklü olduğunu görebilmek -->
+    <queries>
+        <package android:name="com.instagram.android" />
+        <package android:name="com.instagram.lite" />
+        <package android:name="com.zhiliaoapp.musically" />
+        <package android:name="com.ss.android.ugc.trill" />
+        <package android:name="com.zhiliaoapp.musically.go" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.facebook.lite" />
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
+        <package android:name="org.telegram.messenger" />
+        <package android:name="org.telegram.messenger.web" />
+        <package android:name="org.thunderdog.challegram" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:icon="@android:drawable/stat_sys_data_bluetooth"
+        android:supportsRtl="true">
+
+        <!-- Uygulama simgesine basınca açılan bilgi ekranı -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- NFC kart okununca linki yakalayıp doğrudan uygulamaya yollayan görünmez ekran -->
+        <activity
+            android:name=".NfcRouterActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <!-- Instagram -->
+                <data android:host="instagram.com" />
+                <data android:host="www.instagram.com" />
+                <data android:host="m.instagram.com" />
+                <data android:host="instagr.am" />
+
+                <!-- TikTok -->
+                <data android:host="tiktok.com" />
+                <data android:host="www.tiktok.com" />
+                <data android:host="m.tiktok.com" />
+                <data android:host="vm.tiktok.com" />
+                <data android:host="vt.tiktok.com" />
+
+                <!-- Facebook -->
+                <data android:host="facebook.com" />
+                <data android:host="www.facebook.com" />
+                <data android:host="m.facebook.com" />
+                <data android:host="web.facebook.com" />
+                <data android:host="mobile.facebook.com" />
+                <data android:host="fb.com" />
+                <data android:host="www.fb.com" />
+                <data android:host="fb.me" />
+                <data android:host="fb.watch" />
+
+                <!-- WhatsApp -->
+                <data android:host="wa.me" />
+                <data android:host="api.whatsapp.com" />
+                <data android:host="chat.whatsapp.com" />
+                <data android:host="whatsapp.com" />
+                <data android:host="www.whatsapp.com" />
+
+                <!-- Telegram -->
+                <data android:host="t.me" />
+                <data android:host="telegram.me" />
+                <data android:host="www.telegram.me" />
+                <data android:host="telegram.dog" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

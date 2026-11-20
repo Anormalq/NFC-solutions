@@ -10,15 +10,25 @@ android {
         applicationId 'com.anormal.nfcacici'
         minSdk 21
         targetSdk 35
-        versionCode 1
-        versionName '1.0'
+        versionCode 2
+        versionName '1.1'
+    }
+
+    // Sabit imza anahtarı: böylece yeni sürümler eskisinin üstüne kaldırmadan kurulur.
+    // (Sadece kişisel kullanım için; repo gizli tutulmalı.)
+    signingConfigs {
+        sabit {
+            storeFile file('nfc-acici.jks')
+            storePassword 'nfcacici'
+            keyAlias 'nfcacici'
+            keyPassword 'nfcacici'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            // Kendi telefonun için: release de debug anahtarıyla imzalanır, direkt kurulabilir.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.sabit
         }
     }
 

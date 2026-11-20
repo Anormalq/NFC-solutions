@@ -54,6 +54,11 @@
                 <data android:scheme="http" />
                 <data android:scheme="https" />
 
+                <!-- Tüm sayfalar: "Her zaman" seçimi tek bir profil/sayfa için değil,
+                     o sitedeki BÜTÜN linkler için kaydedilsin -->
+                <data android:pathPattern=".*" />
+                <data android:pathPrefix="/" />
+
                 <!-- Instagram -->
                 <data android:host="instagram.com" />
                 <data android:host="www.instagram.com" />
